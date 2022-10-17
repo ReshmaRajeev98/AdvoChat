@@ -1,0 +1,38 @@
+{% extends 'User.html' %}
+{% load static %}
+
+    <!-- ABOUT -->
+    {% block content %}
+   
+
+    <!-- MILESTONE -->
+    <section id="milestone">
+        <div class="container">
+            <div class="row text-center justify-content-center gy-4">
+                <h3>Our Verified Advocates</h3>
+                <p>The key to providing the full range of service capabilities to our clients requirements</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="text-center">
+        <div class="container">
+            
+            
+            <div class="row mt-4">
+                {% for i in data %}
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="service">
+                        <img src="{{i.image.url}}" alt="" style="width: 150px; height: 150px;">
+                        <h5>{{i.name_l}}</h5>
+                        <p>{{i.enroll_l}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+    </section>
+
+
+    {% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'User.html' %}
+{% load static %}
+
+    <!-- ABOUT -->
+    {% block content %}
+
+    <style type="text/css">
+        .error{
+        color: red
+        }
+    </style>
+    
+    {% for i in data %}
+    <div class="col-lg-8">
+        <form id="resubmit" action="{% url 'resubmit' uid=i.id %}"  method="post" class="p-lg-5 col-12 row g-3">
+            {% csrf_token %}
+            <div class="">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" class="form-control" placeholder="Enter subject" id="subject" name="subject">
+            </div>
+
+            <div class="">
+                <label for="desc" class="form-label">Query in detail</label>
+                <textarea name="desc" class="form-control" placeholder="Enter Query in detail" id="desc" cols="30" rows="10"></textarea>
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-brand">Submit</button>
+            </div>
+        </form>
+    </div>
+    {% endfor %}
+
+    <label id="lang[]-error" class="error" for="lang[]"></label>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+
+    <script type="text/javascript">
+        $('#resubmit').validate({
+        rules: {
+        subject: {
+        required: true,
+        minlength: 5
+        },
+        desc:{
+        required:true,
+        }
+    
+        }
+       
+       
+        })
+       
+       
+    </script>
+
+    {% endblock %}

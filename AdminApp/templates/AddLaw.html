@@ -1,0 +1,105 @@
+{% extends 'Admin.html' %}
+            {% block content %}
+
+            <style type="text/css">
+                .error{
+                color: red
+                }
+            </style>
+
+            <main class="bg-white-500 flex-1 p-3 overflow-hidden">
+
+                <div class="flex flex-col">
+                    <!--Grid Form-->
+
+                    <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+                        <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                            <div class="p-3 mb-2 bg-primary text-white">
+                                Add Laws
+                            </div>
+                            <div class="p-3">
+                                <form id="addlaw" action="{% url 'getLaw' %}" method="post" class="w-full">
+                                    {% csrf_token %}
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full px-3">
+                                            <label class="form-group"
+                                                   for="id">
+                                                Law id
+                                            </label>
+                                            <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                                                   id="id" name="id" type="text" placeholder="">
+                                        </div>
+                                        <div class="w-full px-3">
+                                            <label class="form-group"
+                                                   for="type">
+                                                Law Type
+                                            </label>
+                                            <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                                                   id="type" name="type" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full px-3">
+                                            <label class="form-group"
+                                                   for="name">
+                                                Law Name
+                                            </label>
+                                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                                                   id="name" name="name" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full px-3">
+                                            <label class="form-group"
+                                                   for="desc">
+                                                Law Desciption
+                                            </label>
+                                            <textarea class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey" name="desc" id="desc" cols="" rows=""></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full px-3">
+                                            <button type="submit" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Grid Form-->
+                </div>
+            </main>
+
+            <label id="lang[]-error" class="error" for="lang[]"></label>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+
+            <script type="text/javascript">
+                $('#addlaw').validate({
+                rules: {
+                id: {
+                required: true,
+                minlength: 1
+                },
+                type:{
+                required:true,
+                },
+                name:{
+                required:true,
+                minlength:3
+                },
+                desc:{
+                required:true,
+                }
+            
+                }
+               
+               
+                })
+               
+               
+            </script>
+            <!--/Main-->
+            {% endblock %}

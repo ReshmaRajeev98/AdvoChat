@@ -1,0 +1,42 @@
+{% extends 'User.html' %}
+{% load static %}
+
+    <!-- ABOUT -->
+    {% block content %}
+
+    <div class="col-lg-8">
+        <table class="table-responsive w-full rounded" style="width: 100%;">
+            {% csrf_token %}
+            <thead>
+              <tr>
+                <th class="border w-1/6 px-4 py-2">#</th>
+                <th class="border w-1/6 px-4 py-2">Subject</th>
+                <th class="border w-1/6 px-4 py-2">Description</th>
+                <th class="border w-1/6 px-4 py-2">Status</th>
+                <th class="border w-1/6 px-4 py-2">Chat Room</th>
+                <th class="border w-1/6 px-4 py-2">Decline Reason</th>
+                <th class="border w-1/6 px-4 py-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td class="border px-4 py-2">{{forloop.counter}}</td>
+                    <td class="border px-4 py-2">{{i.subject}}</td>
+                    <td class="border px-4 py-2">{{i.desc}}</td>
+                    <td class="border px-4 py-2">{{i.status}}</td>
+                    <td class="border px-4 py-2">{{i.room}}</td>
+                    <td class="border px-4 py-2">{{i.reason}}</td>
+
+                    <td class="border px-4 py-2">
+                        <a href="{% url 'resubmit' uid=i.id %}">Resubmit</a>
+                    </td>
+
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+
+    
+    {% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'User.html' %}
+{% load static %}
+
+    <!-- ABOUT -->
+    {% block content %}
+   
+    <style type="text/css">
+        .error{
+        color: red
+        }
+    </style>
+
+    <!-- MILESTONE -->
+    <section id="milestone">
+        <div class="container">
+            <div class="row text-center justify-content-center gy-4">
+                <h3>Our Verified Advocates</h3>
+                <p>The key to providing the full range of service capabilities to our clients requirements</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="col-lg-8">
+        <form id="contact" action="{% url 'getDataMsg' %}" method="POST" enctype="multipart/form-data" class="p-lg-5 col-12 row g-3">
+            {% csrf_token %}
+            <!-- <input type="hidden" value="{{request.session.id}}" name="userid"> -->
+            <div>
+                <h1>Get in touch</h1>
+            </div>
+            <div class="col-12">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" placeholder="Enter name"
+                    id="name" name="name" aria-describedby="">
+            </div>
+
+            <div class="col-12">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="Enter email"
+                    id="email" name="email" aria-describedby="">
+            </div>
+
+            <div class="col-12">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" placeholder="Enter phone"
+                    id="phone" name="phone" aria-describedby="">
+            </div>
+
+            <div class="col-12">
+                <label for="reason" class="form-label">Reason for contact</label>
+                <input type="text" class="form-control" placeholder="Enter reason for contact"
+                    id="reason" name="reason" aria-describedby="">
+            </div>
+
+            <div class="col-12">
+                <label for="message" class="form-label">Message</label>
+                <textarea name="message" class="form-control" placeholder="Enter message in detail" id="desc" cols="30" rows="10"></textarea>
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-brand">Submit</button>
+            </div>
+            <p>Our support executive will contact you to help you with the appointment slot</p>
+        </form>
+    </div>
+
+    <label id="lang[]-error" class="error" for="lang[]"></label>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+
+            <script type="text/javascript">
+                $('#contact').validate({
+                rules: {
+                name: {
+                required: true,
+                minlength: 3
+                },
+                email:{
+                required:true,
+                email:true
+                },
+                phone:{
+                required:true,
+                maxlength:10
+                },
+                reason:{
+                required:true,
+                minlength:3
+                },
+                message:{
+                required:true,
+                }
+            
+                }
+               
+               
+                })
+               
+               
+            </script>
+
+
+
+    {% endblock %}
